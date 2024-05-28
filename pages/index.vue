@@ -22,7 +22,7 @@ function goto(path) {
 <template>
   <div class="flex flex-col items-center justify-center h-screen">
     <img
-      src="https://sky.br4x.com/api/auth/avatar"
+      :src="`https://sky.br4x.com/api/auth/avatar`"
       class="rounded-full w-24 h-24 mb-4"
     />
     <h1 class="text-4xl font-bold mb-5">welcome, {{ user?.username }}</h1>

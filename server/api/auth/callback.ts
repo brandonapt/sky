@@ -4,9 +4,9 @@ export default defineEventHandler(async (event) => {
   const code = query.code;
 
   async function getAccessToken(code: string) {
-    const clientId = "1245031389460430971";
-    const clientSecret = "xzBwQEL3BIoue2PreH-8_d8k1T_FnpHi";
-    const redirectUri = "https://sky.br4x.com/api/auth/callback";
+    const clientId = process.env.CLIENT_ID;
+    const clientSecret = process.env.CLIENT_SECRET;
+    const redirectUri = process.env.BASE_URL + "/api/auth/callback";
     const data = {
       client_id: clientId,
       client_secret: clientSecret,
@@ -33,8 +33,7 @@ export default defineEventHandler(async (event) => {
   }).then((res) => res.json());
 
   const session = await useSession(event, {
-    // this is insecure but honestly who cares
-    password: "80d42cfb-1cd2-462c-8f17-e3237d9027e9",
+    password: process.env.PASSWORD
   });
 
   await session.update({

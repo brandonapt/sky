@@ -59,7 +59,7 @@ checkLogin();
     >
       <img
         v-if="user?.username"
-        src="https://sky.br4x.com/api/auth/avatar"
+        :src="'https://sky.br4x.com/api/auth/avatar'"
         class="hovery rounded-full w-14 h-14 m-5 cursor-pointer"
         @click="open = !open"
       />

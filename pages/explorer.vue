@@ -91,16 +91,16 @@ navigateDirectory("skyapp");
         @click="navigateDirectory('..')"
         >..</UButton
       >
-      <UButton
-        block
-        color="gray"
-        variant="ghost"
-        class="text-left"
-        @click="deduce(folder)"
-        v-for="folder in choosable"
-        :key="folder"
-        >{{ folder }}</UButton
-      >
+      <div v-for="folder in choosable" :key="folder" class="flex">
+        <UButton
+          block
+          color="gray"
+          variant="ghost"
+          class="text-left"
+          @click="deduce(folder)"
+          >{{ folder }}</UButton
+        >
+      </div>
     </UCard>
 
     <file-modal

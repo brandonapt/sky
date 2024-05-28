@@ -13,6 +13,7 @@
     "@formkit/auto-animate": "latest",
     "@nuxt/ui": "latest",
     "@nuxtjs/tailwindcss": "latest",
+    "dotenv": "^16.4.5",
     "nuxt": "^3.11.2",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"

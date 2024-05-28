@@ -51,6 +51,25 @@ function getFormatted() {
   return links;
 }
 
+function uploadFiles() {
+  const input = document.createElement("input");
+  input.type = "file";
+  input.multiple = true;
+  input.onchange = async () => {
+    const files = input.files;
+    const formData = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i]);
+    }
+    await fetch(`/api/dir/${currentDirectory.value}`, {
+      method: "POST",
+      body: formData,
+    });
+    navigateDirectory(currentDirectory.value);
+  };
+  input.click();
+}
+
 navigateDirectory("skyapp");
 </script>
 
@@ -61,6 +80,7 @@ navigateDirectory("skyapp");
         <div class="flex">
           <h1 class="font-bold">File Explorer</h1>
           <UBreadcrumb class="ml-7" :links="getFormatted()"></UBreadcrumb>
+          <UButton class="ml-auto" @click="uploadFiles">Upload</UButton>
         </div>
       </template>
       <UButton
@@ -83,7 +103,18 @@ navigateDirectory("skyapp");
       >
     </UCard>
 
-    <file-modal :filePopup="filePopup" :currentFile="currentFile" :currentFileName="currentFileName" @close="filePopup = false" :fileUrl="'https://sky.br4x.com/api/dir/' + currentDirectory + '/' + currentFileName" />
+    <file-modal
+      :filePopup="filePopup"
+      :currentFile="currentFile"
+      :currentFileName="currentFileName"
+      @close="filePopup = false"
+      :fileUrl="
+        'https://sky.br4x.com/api/dir/' +
+        currentDirectory +
+        '/' +
+        currentFileName
+      "
+    />
     <loading-modal :loading="loading" />
   </div>
 </template>
